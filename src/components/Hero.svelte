@@ -7,10 +7,6 @@
     <div class="polygon relative">
       <div class="text-4xl text-black text-layer">Hello world</div>
     </div>
-
-    <!-- <div class="relative hero-bg">
-      <div class="text-4xl text-black text-layer">Hello world</div>
-    </div>   -->
   </div>
 </template>
 
@@ -26,12 +22,6 @@
     border-radius: 0 0 5px 0 / 0 0 50px 0;
     opacity: .8;
     margin-right: 20px;
-  }
-
-  .hero-bg {
-    background: url('../assets/images/bg.svg') no-repeat top left;
-    width: 100%;
-    height: 770px;
   }
 
   .text-layer {
