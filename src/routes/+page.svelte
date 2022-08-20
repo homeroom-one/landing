@@ -1,2 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+  import '../assets/css/tailwind.css'
+  import Hero from "../components/Hero.svelte";
+</script>
+
+<template>
+  <div>
+    <Hero />
+  </div>
+</template>
+
+<style lang="less">
+  
+</style>
