@@ -1,5 +1,4 @@
 <script lang="ts">
-  import '../assets/css/tailwind.css'
   import Hero from "../components/Hero.svelte";
 </script>
 

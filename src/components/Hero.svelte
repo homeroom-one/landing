@@ -1,11 +1,12 @@
 <script lang="ts">
-  
 </script>
 
 <template>
   <div>
     <div class="polygon relative">
-      <div class="text-4xl text-black text-layer">Hello world</div>
+      <div class="max-w-7xl pt-20 mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-4xl">Hello world</div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,15 +21,7 @@
     width: 100%;
     height: 700px;
     border-radius: 0 0 5px 0 / 0 0 50px 0;
-    opacity: .8;
+    opacity: 0.8;
     margin-right: 20px;
-  }
-
-  .text-layer {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    top: 0;
-    left: 0;
   }
 </style>
