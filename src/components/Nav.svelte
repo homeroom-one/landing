@@ -244,7 +244,7 @@
 
 <style lang="less">
   .desktop-nav-link {
-    @apply text-midnight-500 border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium;
+    @apply text-midnight-500 border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium transition ease-in-out duration-300;
 
     &.active {
       @apply text-midnight-900 border-dusk-900 border-b-2;
