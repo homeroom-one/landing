@@ -26,7 +26,7 @@
 </script>
 
 <template>
-  <nav id="navbar" class="bg-white/[.2] fixed w-full z-50 transition ease-in-out duration-300 scroll">
+  <nav id="navbar" class="sm:bg-white/[.2] fixed w-full z-40 transition ease-in-out duration-300 scroll">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
@@ -127,7 +127,7 @@
   <!-- Mobile menu, show/hide based on menu state. -->
   {#if !visible}
     <div
-      class="origin-top-right absolute left-0 w-3/4 h-screen shadow-lg py-1 bg-white sm:hidden z-10 flex flex-col"
+      class="origin-top-right fixed left-0 w-3/4 h-screen shadow-lg py-1 bg-white sm:hidden z-50 flex flex-col"
       id="mobile-menu"
       in:fly={{ x: -50, duration: 250 }}
       out:fly={{ duration: 250 }}

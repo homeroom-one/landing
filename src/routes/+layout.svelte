@@ -14,15 +14,16 @@
 
     if (navbar) {
       const sticky = navbar.offsetTop
-      const lightWhite = 'bg-white/[.2]'
-      const firmerWhite = 'bg-white/[.95]'
+      const lightWhite = 'sm:bg-white/[.2]'
+      const firmerWhite = 'sm:bg-white/[.95]'
+      const shadow = 'sm:shadow-lg'
 
       window.onscroll = () => {
         if (window.pageYOffset !== sticky) {
           navbar.classList.remove(lightWhite)
-          navbar.classList.add(firmerWhite, 'shadow-lg')
+          navbar.classList.add(firmerWhite, shadow)
         } else {
-          navbar.classList.remove(firmerWhite, 'shadow-lg')
+          navbar.classList.remove(firmerWhite, shadow)
           navbar.classList.add(lightWhite)
         }
       }
