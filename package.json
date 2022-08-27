@@ -2,7 +2,7 @@
 	"name": "website",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "clear && vite dev",
 		"build": "vite build",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
@@ -12,7 +12,7 @@
 		"format": "prettier --write --plugin-search-dir=. .",
 		"create-directories": "mkdir ./src/assets ./src/components ./src/layouts ./src/models ./src/store && mkdir -p ./src/assets/{css,images}",
 		"create-files": "touch ./src/assets/css/tailwind.css ./src/assets/images/README.md ./src/components/README.md ./src/layouts/README.md ./src/models/README.md ./src/store/README.md",
-		"packages": "yarn add @urql/svelte graphql faunadb dayjs && yarn add -D less tailwindcss @tailwindcss/forms postcss autoprefixer && npx tailwindcss init tailwind.config.cjs -p"
+		"packages": "yarn add graphql-request graphql faunadb dayjs && yarn add -D less tailwindcss @tailwindcss/forms postcss autoprefixer && npx tailwindcss init tailwind.config.cjs -p"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
@@ -24,18 +24,18 @@
 		"prettier": "^2.7.1",
 		"prettier-plugin-svelte": "^2.7.0",
 		"svelte": "^3.49.0",
-		"svelte-check": "^2.8.0",
+		"svelte-check": "^2.8.1",
 		"svelte-preprocess": "^4.10.7",
 		"tailwindcss": "^3.1.8",
 		"tslib": "^2.4.0",
-		"typescript": "^4.7.4",
-		"vite": "^3.0.8"
+		"typescript": "^4.8.2",
+		"vite": "^3.0.9"
 	},
 	"type": "module",
 	"dependencies": {
-		"@urql/svelte": "^2.0.2",
 		"dayjs": "^1.11.5",
 		"faunadb": "^4.6.0",
-		"graphql": "^16.6.0"
+		"graphql": "^16.6.0",
+		"graphql-request": "^4.3.0"
 	}
 }
