@@ -8,6 +8,7 @@ export interface Hygraph {
 export interface Hero {
   titleColorOne?: string
   titleColorTwo?: string
+  description?: string
   graphic?: {
     url?: string
   }

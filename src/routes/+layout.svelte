@@ -1,6 +1,33 @@
 <script lang="ts">
+  // Svelte
+  import { onMount } from 'svelte'
+
+  // CSS
   import '../assets/css/tailwind.css'
+
+  // Components
   import Nav from '../components/Nav.svelte'
+  import Footer from '../components/Footer.svelte'
+
+  onMount(() => {
+    const navbar = document.querySelector('#navbar')
+
+    if (navbar) {
+      const sticky = navbar.offsetTop
+      const lightWhite = 'bg-white/[.2]'
+      const firmerWhite = 'bg-white/[.95]'
+
+      window.onscroll = () => {
+        if (window.pageYOffset !== sticky) {
+          navbar.classList.remove(lightWhite)
+          navbar.classList.add(firmerWhite, 'shadow-lg')
+        } else {
+          navbar.classList.remove(firmerWhite, 'shadow-lg')
+          navbar.classList.add(lightWhite)
+        }
+      }
+    }
+  })
 </script>
 
 <template>
@@ -8,6 +35,7 @@
   <main>
     <slot />
   </main>
+  <Footer />
 </template>
 
 <style lang="less">

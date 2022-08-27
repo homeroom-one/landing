@@ -15,6 +15,7 @@ export const getLandingPageData = async () => {
         hero {
           titleColorOne
           titleColorTwo
+          description
           graphic {
             url
           }

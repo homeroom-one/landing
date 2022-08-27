@@ -26,12 +26,10 @@
 </script>
 
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
-  <nav class="bg-transparent fixed w-full z-10">
+  <nav id="navbar" class="bg-white/[.2] fixed w-full z-50 transition ease-in-out duration-300 scroll">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
-
           <div class="flex-shrink-0 flex items-center">
             <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
             <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
@@ -244,7 +242,7 @@
 
 <style lang="less">
   .desktop-nav-link {
-    @apply text-midnight-500 border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium transition ease-in-out duration-300;
+    @apply text-midnight-500 border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-lg font-medium transition ease-in-out duration-300;
 
     &.active {
       @apply text-midnight-900 border-dusk-900 border-b-2;
