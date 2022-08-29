@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { browser } from '$app/env'
+
   import { onMount } from 'svelte'
   import { page } from '$app/stores'
   import { fly } from 'svelte/transition'
@@ -11,7 +13,25 @@
 
   onMount(() => {
     pathname = $page.url.hash.slice(1) || 'home'
-    console.log(pathname)
+
+    const navbar = document.querySelector('#navbar')
+
+    if (navbar) {
+      const sticky = navbar.offsetTop
+      const lightWhite = 'bg-white/[.2]'
+      const firmerWhite = 'bg-white/[.95]'
+      const shadow = 'shadow-lg'
+
+      window.onscroll = () => {
+        if (window.pageYOffset !== sticky) {
+          navbar.classList.remove(lightWhite)
+          navbar.classList.add(firmerWhite, shadow)
+        } else {
+          navbar.classList.remove(firmerWhite, shadow)
+          navbar.classList.add(lightWhite)
+        }
+      }
+    }
   })
 
   const nav: HeaderNav[] = [
@@ -20,19 +40,23 @@
     { label: `Features`, uri: `#features`, current: 'features' }
   ]
 
-  const show = () => {
+  let show = () => {
     visible = !visible
   }
+
+  $: if (browser) document.body.classList.toggle('overflow-y-hidden', !visible)
 </script>
 
 <template>
-  <nav id="navbar" class="sm:bg-white/[.2] fixed w-full z-40 transition ease-in-out duration-300 scroll">
+  <nav id="navbar" class="bg-white/[.2] sm:fixed w-full z-40 transition ease-in-out duration-300 scroll">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
             <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
             <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
+
+            <h1 class="ml-3 text-2xl">HomeroomOne</h1>
           </div>
 
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -54,9 +78,10 @@
 
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
           <div class="flex-shrink-0">
-            <button
-              type="button"
+            <a
               class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              href="mailto:hello@homeroomone.com"
+              target="_blank"
             >
               <!-- Heroicon name: outline/mail-open -->
               <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -67,7 +92,7 @@
                 />
               </svg>
               <span>Contact</span>
-            </button>
+            </a>
           </div>
         </div>
 
@@ -127,12 +152,12 @@
   <!-- Mobile menu, show/hide based on menu state. -->
   {#if !visible}
     <div
-      class="origin-top-right fixed left-0 w-3/4 h-screen shadow-lg py-1 bg-white sm:hidden z-50 flex flex-col"
+      class="origin-top-right fixed top-0 left-0 w-3/4 h-screen shadow-lg bg-white sm:hidden z-50 flex flex-col"
       id="mobile-menu"
       in:fly={{ x: -50, duration: 250 }}
       out:fly={{ duration: 250 }}
     >
-      <div class="pt-2 pr-4 pb-3 pl-3 border-b border-gray-300">
+      <div class="py-4 pr-4 pl-3 border-b border-gray-300">
         <div class="flex-shrink-0 flex items-center">
           <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
           <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
@@ -185,7 +210,7 @@
             <span class="text-xl">Email us</span>
           </h5>
           <h5 class="text-xl ml-6 text-dusk-900">
-            <a href="mailto:hello@homeroom.one">hello@homeroom.one</a>
+            <a href="mailto:hello@homeroom.one" target="_blank">hello@homeroom.one</a>
           </h5>
         </div>
 

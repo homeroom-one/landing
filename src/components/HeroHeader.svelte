@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="relative bg-sky-blue">
+  <div class="relative bg-sky-blue shadow-xl">
     <div class="gradient-background"></div>
     <div class="max-w-7xl pt-20 pb-10 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="md:grid md:grid-cols-2 md:gap-8">

@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+  <div id="about" class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
       <div class="max-w-xl mx-auto lg:max-w-none">
         <div class="text-center max-w-xl mx-auto">
           <h2 class="text-2xl font-bold tracking-tight text-gray-900">{why.title}</h2>

@@ -30,7 +30,7 @@
   {#if why}
     <InfoCardList {why} />
   {/if}
-  <div class="relative bg-white pt-16 pb-32 overflow-hidden">
+  <div id="features" class="relative pt-16 pb-32 overflow-hidden">
     {#if info}
       <FeatureSectionOne {info} />
     {/if}
