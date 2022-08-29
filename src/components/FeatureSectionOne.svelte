@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { InformationAndGraphic8020 } from '../models'
+
+  export let info: InformationAndGraphic8020
 </script>
 
 <template>
@@ -28,10 +31,11 @@
             </span>
           </div>
           <div class="mt-6">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900">Stay on top of customer support</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+              {info.titleColorOne}
+            </h2>
             <p class="mt-4 text-lg text-gray-500">
-              Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra
-              duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
+              {info.description}
             </p>
             <div class="mt-6">
               <a
@@ -68,9 +72,14 @@
       </div>
       <div class="mt-12 sm:mt-16 lg:mt-0">
         <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-          <img
+          <!-- <img
             class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
             src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg"
+            alt="Inbox user interface"
+          /> -->
+          <img
+            class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+            src={info.graphic.url}
             alt="Inbox user interface"
           />
         </div>
@@ -82,16 +91,18 @@
 <style lang="less">
   .polygon {
     background-color: #6dc1dc;
-    // background-image: linear-gradient(112deg, #6dc1dc 0%, #a690fc 20%, #fc96bb 60%, #ffc397 100%);
-    // background: linear-gradient(to right, #868f96 0%, #596164 100%);
     background: linear-gradient(-112deg, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
 
+    // Right
+    // clip-path: polygon(0% 0%, 100% 0, 90% 80%, 0 95%);
+    // Left
     clip-path: polygon(0% 0%, 100% 0, 100% 100%, 20% 90%);
 
     position: absolute;
     z-index: 0;
     width: 100%;
-    height: 700px;
+    min-height: 700px;
+    height: 100%;
     opacity: 0.4;
     margin-right: 20px;
   }

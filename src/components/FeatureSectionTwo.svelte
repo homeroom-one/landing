@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { ReportsInformationAndGraphic } from '../models'
+
+  export let report: ReportsInformationAndGraphic
 </script>
 
 <template>
@@ -28,10 +31,11 @@
             </span>
           </div>
           <div class="mt-6">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900">Better understand your customers</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+              {report.titleColorOne}
+            </h2>
             <p class="mt-4 text-lg text-gray-500">
-              Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum malesuada faucibus lacinia porttitor. Pulvinar laoreet sagittis viverra
-              duis. In venenatis sem arcu pretium pharetra at. Lectus viverra dui tellus ornare pharetra.
+              {report.description}
             </p>
             <div class="mt-6">
               <a
@@ -46,9 +50,14 @@
       </div>
       <div class="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
         <div class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-          <img
+          <!-- <img
             class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
             src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg"
+            alt="Customer profile user interface"
+          /> -->
+          <img
+            class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+            src={report.graphic.url}
             alt="Customer profile user interface"
           />
         </div>
@@ -60,8 +69,6 @@
 <style lang="less">
   .polygon {
     background-color: #6dc1dc;
-    // background-image: linear-gradient(112deg, #6dc1dc 0%, #a690fc 20%, #fc96bb 60%, #ffc397 100%);
-    // background: linear-gradient(to right, #868f96 0%, #596164 100%);
     background: linear-gradient(112deg, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
 
     // Right
@@ -72,7 +79,8 @@
     position: absolute;
     z-index: 0;
     width: 100%;
-    height: 700px;
+    min-height: 700px;
+    height: 100%;
     opacity: 0.4;
     margin-right: 20px;
   }

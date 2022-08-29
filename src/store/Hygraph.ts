@@ -21,8 +21,8 @@ export const getLandingPageData = async () => {
           }
         }
         whyHomeroomOne {
-          description
           title
+          description
           informationCard {
             ... on InformationCard {
               description
@@ -32,6 +32,24 @@ export const getLandingPageData = async () => {
               title
             }
           }
+        }
+        informationAndGraphic8020 {
+          titleColorOne
+          description
+          graphic {
+            url
+          }
+        }
+        reportsInformationAndGraphic {
+          titleColorOne
+          description
+          graphic {
+            url
+          }
+        }
+        contactBanner {
+          titleColorOne
+          description
         }
       }
     }

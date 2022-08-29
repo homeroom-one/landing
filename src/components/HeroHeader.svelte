@@ -5,8 +5,9 @@
 </script>
 
 <template>
-  <div class="polygon relative">
-    <div class="max-w-7xl pt-20 mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="relative bg-sky-blue">
+    <div class="gradient-background"></div>
+    <div class="max-w-7xl pt-20 pb-10 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="md:grid md:grid-cols-2 md:gap-8">
         <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
           <div class="lg:py-24">
@@ -38,20 +39,27 @@
                   </div>
                 </div>
                 <p class="mt-3 text-sm text-white sm:mt-4">
-                  Start your free 14-day trial, no credit card necessary. By providing your email, you agree to our <a href="/" class="font-medium text-white"
-                    >terms of service</a
-                  >.
+                  Start your free 14-day trial, no credit card necessary. 
+                  By providing your email, you agree to our 
+                  <a href="/" class="font-medium text-white">
+                    terms of service
+                  </a>.
                 </p>
               </form>
             </div>
           </div>
         </div>
-        <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+        <div class="mt-12 lg:m-0 lg:relative">
           <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
             <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
-            <img
-              class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+            <!-- <img
+              class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none icon-info-card"
               src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg"
+              alt=""
+            /> -->
+            <img
+              class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none icon-info-card"
+              src={hero.graphic?.url}
               alt=""
             />
           </div>
@@ -62,15 +70,33 @@
 </template>
 
 <style lang="less">
-  .polygon {
+  .bg-sky-blue {
     background-color: #6dc1dc;
-    background-image: linear-gradient(112deg, #6dc1dc 0%, #a690fc 20%, #fc96bb 60%, #ffc397 100%);
+  }
+  .gradient-background {
+    // background-image: linear-gradient(112deg, #6dc1dc 0%, #a690fc 20%, #fc96bb 60%, #ffc397 100%);
+    background-image: linear-gradient(112deg, #ffc397 0%, #fc96bb 20%, #a690fc 60%, #6dc1dc 100%);
 
-    clip-path: polygon(0% 0%, 100% 0, 90% 80%, 0 95%);
-
+    position: absolute;
+    z-index: 0;
     width: 100%;
-    height: 700px;
+    height: 100%;
     opacity: 0.8;
     margin-right: 20px;
   }
+
+  // .polygon {
+  //   background-color: #6dc1dc;
+  //   // background-image: linear-gradient(112deg, #6dc1dc 0%, #a690fc 20%, #fc96bb 60%, #ffc397 100%);
+  //   background-image: linear-gradient(112deg, #ffc397 0%, #fc96bb 20%, #a690fc 60%, #6dc1dc 100%);
+
+  //   clip-path: polygon(0% 0%, 100% 0, 90% 80%, 0 95%);
+
+  //   position: absolute;
+  //   z-index: 0;
+  //   width: 100%;
+  //   height: 700px;
+  //   opacity: 0.8;
+  //   margin-right: 20px;
+  // }
 </style>

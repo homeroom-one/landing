@@ -1,13 +1,18 @@
 <script lang="ts">
+  import type { ContactBanner } from '../models'
+
+  export let contact: ContactBanner
 </script>
 
 <template>
   <div class="text-white gradient mt-16">
     <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:py-32 lg:px-8 lg:flex lg:items-center">
       <div class="lg:w-0 lg:flex-1">
-        <h2 class="text-3xl tracking-tight font-bold text-white sm:text-4xl">Sign up for our newsletter</h2>
+        <h2 class="text-3xl tracking-tight font-bold text-white sm:text-4xl">
+          {contact.titleColorOne}
+        </h2>
         <p class="mt-3 max-w-3xl text-lg text-white">
-          Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat.
+          {contact.description}
         </p>
       </div>
       <div class="mt-8 lg:mt-0 lg:ml-8">
