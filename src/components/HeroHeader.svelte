@@ -7,7 +7,7 @@
 
 <template>
   <div class="relative bg-sky-blue shadow-xl">
-    <div class="gradient-background"></div>
+    <div class="gradient-background" />
     <div class="max-w-7xl pt-20 pb-10 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="md:grid md:grid-cols-2 md:gap-8">
         <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
@@ -20,7 +20,7 @@
               {hero.description}
             </p>
             <div class="mt-10 sm:mt-12">
-              <form on:submit|preventDefault class="sm:max-w-xl sm:mx-auto lg:mx-0">
+              <!-- <form on:submit|preventDefault class="sm:max-w-xl sm:mx-auto lg:mx-0">
                 <div class="sm:flex">
                   <div class="min-w-0 flex-1">
                     <label for="email" class="sr-only">Email address</label>
@@ -47,7 +47,23 @@
                     terms of service
                   </a>.
                 </p>
-              </form>
+              </form> -->
+
+              <a
+                class="relative inline-flex items-center px-6 py-4 border border-transparent text-lg font-medium rounded-full text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                href="mailto:hello@homeroomone.com"
+                target="_blank"
+              >
+                <!-- Heroicon name: outline/mail-open -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
+                  />
+                </svg>
+                <span>Contact</span>
+              </a>
             </div>
           </div>
         </div>
@@ -59,11 +75,7 @@
               src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg"
               alt=""
             /> -->
-            <img
-              class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none icon-info-card"
-              src={hero.graphic?.url}
-              alt=""
-            />
+            <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none icon-info-card" src={hero.graphic?.url} alt="" />
           </div>
         </div>
       </div>
