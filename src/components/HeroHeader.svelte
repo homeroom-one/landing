@@ -1,8 +1,35 @@
 <script lang="ts">
   import type { Hero } from '../models'
-  import { sendEmail } from '../helpers'
+  // import { sendEmail } from '../helpers'
 
   export let hero: Hero
+
+  let fromMail: string
+
+  const sendMail = async (from: string) => {
+    const payload = {
+      params: {
+        from
+      }
+    }
+    console.log('HeroHeader > sendMail > payload: ', JSON.stringify(payload))
+
+    // const response = 
+    
+    await fetch('/api/mail/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(response => {
+      console.log('>>>>>>>>>>>>>>>> response: ', response)
+    }).catch(error => {
+      console.log('>>>>>>>>>>>>>>>> error: ', error)
+    })
+
+    
+  }
 </script>
 
 <template>
@@ -20,7 +47,7 @@
               {hero.description}
             </p>
             <div class="mt-10 sm:mt-12">
-              <!-- <form on:submit|preventDefault class="sm:max-w-xl sm:mx-auto lg:mx-0">
+              <form on:submit|preventDefault class="sm:max-w-xl sm:mx-auto lg:mx-0">
                 Uncomment this when ready
                 <div class="sm:flex">
                   <div class="min-w-0 flex-1">
@@ -30,25 +57,22 @@
                       type="email"
                       placeholder="Enter your email"
                       class="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
+                      bind:value={fromMail}
                     />
                   </div>
                   <div class="mt-3 sm:mt-0 sm:ml-3">
                     <button
                       type="button"
                       class="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
-                      on:click={() => sendEmail('foo')}
-                      >Start free trial</button
+                      on:click={() => sendMail(fromMail)}>Start free trial</button
                     >
                   </div>
                 </div>
                 <p class="mt-3 text-sm text-white sm:mt-4">
-                  Start your free 14-day trial, no credit card necessary. 
-                  By providing your email, you agree to our 
-                  <a href="/" class="font-medium text-white">
-                    terms of service
-                  </a>.
+                  Start your free 14-day trial, no credit card necessary. By providing your email, you agree to our
+                  <a href="/" class="font-medium text-white"> terms of service </a>.
                 </p>
-              </form> -->
+              </form>
 
               <a
                 class="relative inline-flex items-center px-6 py-4 border border-transparent text-lg font-medium rounded-full text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

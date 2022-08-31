@@ -37,7 +37,8 @@
   const nav: HeaderNav[] = [
     { label: `Home`, uri: `#home`, current: 'home' },
     { label: `About`, uri: `#about`, current: 'about' },
-    { label: `Features`, uri: `#features`, current: 'features' }
+    { label: `Features`, uri: `#features`, current: 'features' },
+    { label: `Consultation`, uri: `#consult`, current: 'consult' }
   ]
 
   let show = () => {
