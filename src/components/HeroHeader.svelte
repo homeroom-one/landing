@@ -21,6 +21,7 @@
             </p>
             <div class="mt-10 sm:mt-12">
               <!-- <form on:submit|preventDefault class="sm:max-w-xl sm:mx-auto lg:mx-0">
+                Uncomment this when ready
                 <div class="sm:flex">
                   <div class="min-w-0 flex-1">
                     <label for="email" class="sr-only">Email address</label>
