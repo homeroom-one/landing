@@ -14,7 +14,7 @@
   onMount(() => {
     pathname = $page.url.hash.slice(1) || 'home'
 
-    const navbar = document.querySelector('#navbar')
+    const navbar = document.querySelector('#navbar') as HTMLElement | null;
 
     if (navbar) {
       const sticky = navbar.offsetTop

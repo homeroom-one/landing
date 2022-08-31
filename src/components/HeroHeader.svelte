@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Hero } from '../models'
+  import { sendEmail } from '../helpers'
 
   export let hero: Hero
 </script>
@@ -19,7 +20,7 @@
               {hero.description}
             </p>
             <div class="mt-10 sm:mt-12">
-              <form action="#" class="sm:max-w-xl sm:mx-auto lg:mx-0">
+              <form on:submit|preventDefault class="sm:max-w-xl sm:mx-auto lg:mx-0">
                 <div class="sm:flex">
                   <div class="min-w-0 flex-1">
                     <label for="email" class="sr-only">Email address</label>
@@ -32,8 +33,9 @@
                   </div>
                   <div class="mt-3 sm:mt-0 sm:ml-3">
                     <button
-                      type="submit"
+                      type="button"
                       class="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
+                      on:click={() => sendEmail('foo')}
                       >Start free trial</button
                     >
                   </div>
