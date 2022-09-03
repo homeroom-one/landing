@@ -1,50 +1,40 @@
 // Svelte
-import { error } from '@sveltejs/kit'
+import type { RequestEvent } from '@sveltejs/kit'
 
 // Packages
 import sgMail from '@sendgrid/mail'
 
 /** @type {import('./$types').RequestHandler} */
-export async function POST({ params }: any) {
+export async function POST({ request }: RequestEvent) {
   sgMail.setApiKey(import.meta.env.VITE_SNEDGRID_SEND_MAIL_API)
 
-  console.log('+server > POST > params: ', params)
+  const response = await request.json()
 
-  const message = {
-    to: `hello@homeroomone.com`,
-    from: `hello@homeroomone.com`,
-    // subject: `Interest inquiry: ${from}`,
-    subject: `Interest inquiry: `,
-    // text: 'and easy to do anywhere, even with Node.js',
-    // html: `Interest inquiry: ${from}`
-    html: `Interest inquiry: `
+  try {
+    await sgMail.send(response)
+
+    const blob = {
+      data: {
+        message: 'success'
+      }
+    }
+
+    return new Response(JSON.stringify(blob))
+  } catch (error: any) {
+
+    const blob = {
+      data: {
+        error: {
+          message: 'error',
+          details: []
+        }
+      }
+    }
+
+    if (error.response) {
+      blob.data.error.details = error.response.body
+    }
+
+    return new Response(JSON.stringify(blob))
   }
-
-  console.log('---- SendGrid > Sending Message -----')
-
-  const response = await sgMail.send(message)
-    // .then(
-    //   (response: any) => {
-    //     console.log('sendgrid > response: ', response)
-    //     return new Response(response.statusCode)
-    //   },
-    //   (error: any) => {
-    //     console.error('sendgrid > error: ', error)
-        
-    //     if (error.response) {
-    //       console.error(error.response.body)
-    //       return error.response
-    //     }
-
-    //     return error
-    //   }
-    // )
-
-  console.log('/api/mail/send > response: ', response)
-
-  if (error) {
-    throw error(404, 'Not found')
-  }
-
-  return new Response(response[0].Response.statusCode)
 }

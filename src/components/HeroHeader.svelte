@@ -4,31 +4,37 @@
 
   export let hero: Hero
 
-  let fromMail: string
+  let fromMail: string = ''
 
   const sendMail = async (from: string) => {
-    const payload = {
-      params: {
-        from
-      }
-    }
-    console.log('HeroHeader > sendMail > payload: ', JSON.stringify(payload))
-
-    // const response = 
-    
-    await fetch('/api/mail/send', {
+    let opts = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'content-Type': 'application/json'
       },
-      body: JSON.stringify(payload)
-    }).then(response => {
-      console.log('>>>>>>>>>>>>>>>> response: ', response)
-    }).catch(error => {
-      console.log('>>>>>>>>>>>>>>>> error: ', error)
-    })
+      body: {}
+    }
 
-    
+    const message = {
+      to: fromMail,
+      from: `hello@homeroomone.com`,
+      bcc: `hello@homeroomone.com`,
+      subject: `Thank you for your interest!`,
+      // subject: `Interest inquiry: ${from}`,
+      // subject: `Interest inquiry: ${fromMail}`,
+      // text: 'and easy to do anywhere, even with Node.js',
+      // html: `Interest inquiry: ${from}`
+      // html: `Interest inquiry: ${fromMail}`
+      template_id: 'd-1ea692f963d5494db793a711161a82a5'
+    }
+
+    opts.body = JSON.stringify(message)
+
+    const response = await fetch('/api/mail/send', opts)
+    const json = await response.json()
+
+    console.log('>>>> response.status: ', response.status)
+    console.log('>>>> await response.json() > json: ', json)
   }
 </script>
 

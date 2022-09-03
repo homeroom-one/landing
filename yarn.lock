@@ -12,6 +12,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.54.tgz#de2a4be678bd4d0d1ffbb86e6de779cde5999028"
   integrity sha512-bZBrLAIX1kpWelV0XemxBZllyRmM6vgFQQG2GdNb+r3Fkp0FOh1NJSvekXDs7jq70k4euu1cryLMfU+mTXlEpw==
 
+"@graphql-typed-document-node/core@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
+  integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
+
 "@iarna/toml@^2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
@@ -922,11 +927,12 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.2.9:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.10.tgz#147d3a006da4ca3ce14728c7aefc287c367d7a6c"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
 
-graphql-request@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-4.3.0.tgz#b934e08fcae764aa2cdc697d3c821f046cb5dbf2"
-  integrity sha512-2v6hQViJvSsifK606AliqiNiijb1uwWp6Re7o0RTyH+uRTv/u7Uqm2g4Fjq/LgZIzARB38RZEvVBFOQOVdlBow==
+graphql-request@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-5.0.0.tgz#7504a807d0e11be11a3c448e900f0cc316aa18ef"
+  integrity sha512-SpVEnIo2J5k2+Zf76cUkdvIRaq5FMZvGQYnA4lUWYbc99m+fHh4CZYRRO/Ff4tCLQ613fzCm3SiDT64ubW5Gyw==
   dependencies:
+    "@graphql-typed-document-node/core" "^3.1.1"
     cross-fetch "^3.1.5"
     extract-files "^9.0.0"
     form-data "^3.0.0"
@@ -1643,10 +1649,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-svelte-check@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.8.1.tgz#484499d66ad6a5043e9dfeb91b0dfadf2a9c63b0"
-  integrity sha512-cibyY1sgt3ONIDnQbSgV2X9AJFhwEslRHNo95lijrYfPzVEvTvbmL2ohsUyqB5L7j1GhLXtQbjCJ4lZZ/fwbeQ==
+svelte-check@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/svelte-check/-/svelte-check-2.9.0.tgz#94a4bbe5bccade5a9edae987f417040ab7af4a2a"
+  integrity sha512-9AVrtP7WbfDgCdqTZNPdj5CCCy1OrYMxFVWAWzNw7fl93c9klFJFtqzVXa6fovfQ050CcpUyJE2dPFL9TFAREw==
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.9"
     chokidar "^3.4.1"
