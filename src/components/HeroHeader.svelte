@@ -61,9 +61,9 @@
       <div class="md:grid md:grid-cols-2 md:gap-8">
         <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
           <div class="lg:py-24">
-            <h1 class="mt-4 text-4xl tracking-tight font-bold text-white sm:mt-5 sm:text-6xl sm:tracking-tight lg:mt-6 xl:text-6xl xl:tracking-tight">
+            <h1 class="mt-4 text-5xl tracking-tight font-bold text-white sm:mt-5 sm:tracking-tight lg:mt-6 xl:tracking-tight">
               <span class="block">{hero.titleColorOne}</span>
-              <span class="block text-midnight-900">{hero.titleColorTwo}</span>
+              <span class="mt-4 block text-midnight-900">{hero.titleColorTwo}</span>
             </h1>
             <p class="mt-3 text-lg text-white sm:mt-5 sm:text-xl lg:text-xl xl:text-xl">
               {hero.description}
