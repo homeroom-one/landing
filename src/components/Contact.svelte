@@ -108,7 +108,7 @@
             <h4 class="text-base tracking-tight text-white sm:text-lg w-full">
               <span class="font-bold block">Email sent!</span>
               <span class="text-white block">
-                As we build the next generation of student + counselor interaction, we will keep you updated on our progress!
+                We will reach out to you shortly to see how we can best serve you. Thank you!
               </span>
             </h4>
           </div>
