@@ -55,9 +55,6 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
-            <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
-            <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="Workflow" />
-
             <h1 class="ml-3 text-2xl">HomeroomOne</h1>
           </div>
 
