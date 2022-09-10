@@ -1,8 +1,7 @@
 // Svelte
 import type { RequestEvent } from '@sveltejs/kit'
-
 // Packages
-import sgMail from '@sendgrid/mail'
+import sgMail, { type MailDataRequired } from '@sendgrid/mail'
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }: RequestEvent) {
@@ -10,10 +9,17 @@ export async function POST({ request }: RequestEvent) {
 
   const response = await request.json()
 
+  const payload: MailDataRequired = {
+    to: response.to,
+    from: `hello@homeroomone.com`,
+    templateId: 'd-5cdcc2d38afa4adb981ec2e001ffdda4'
+  }
+
   try {
-    await sgMail.send(response)
+    await sgMail.send(payload)
 
     const blob = {
+      status: 200,
       data: {
         message: 'success'
       }
@@ -21,8 +27,8 @@ export async function POST({ request }: RequestEvent) {
 
     return new Response(JSON.stringify(blob))
   } catch (error: any) {
-
     const blob = {
+      status: 400,
       data: {
         error: {
           message: 'error',

@@ -1,40 +1,56 @@
 <script lang="ts">
+  // Svelte
+  import { fade } from 'svelte/transition'
+  // Packages
+  import * as EmailValidator from 'email-validator'
+  // Models
   import type { Hero } from '../models'
-  // import { sendEmail } from '../helpers'
+  // Components
+  import PrivacyModal from './PrivacyModal.svelte'
 
   export let hero: Hero
+  let show: boolean = false
 
-  let fromMail: string = ''
+  let showModal: boolean = show
 
-  const sendMail = async (from: string) => {
+  let toMail: string = ''
+  let mailSent: boolean = false
+  let emailError: boolean = false
+
+  const sendMail = async () => {
+    if (!EmailValidator.validate(toMail)) {
+      emailError = !emailError
+      return
+    }
+
     let opts = {
       method: 'POST',
       headers: {
         'content-Type': 'application/json'
       },
-      body: {}
+      body: JSON.stringify({})
     }
 
-    const message = {
-      to: fromMail,
-      from: `hello@homeroomone.com`,
-      bcc: `hello@homeroomone.com`,
-      subject: `Thank you for your interest!`,
-      // subject: `Interest inquiry: ${from}`,
-      // subject: `Interest inquiry: ${fromMail}`,
-      // text: 'and easy to do anywhere, even with Node.js',
-      // html: `Interest inquiry: ${from}`
-      // html: `Interest inquiry: ${fromMail}`
-      template_id: 'd-1ea692f963d5494db793a711161a82a5'
+    const email = {
+      to: toMail
     }
 
-    opts.body = JSON.stringify(message)
+    opts.body = JSON.stringify(email)
 
-    const response = await fetch('/api/mail/send', opts)
-    const json = await response.json()
+    const response = await fetch('/api/notification/mail/send', opts)
+    const blob = await response.json()
 
-    console.log('>>>> response.status: ', response.status)
-    console.log('>>>> await response.json() > json: ', json)
+    if (blob.status === 200) {
+      mailSent = !mailSent
+      toMail = 'Success!'
+    } else {
+      mailSent = false
+      emailError = !emailError
+    }
+  }
+
+  const toggleModal = () => {
+    showModal = true
   }
 </script>
 
@@ -49,69 +65,65 @@
               <span class="block">{hero.titleColorOne}</span>
               <span class="block text-midnight-900">{hero.titleColorTwo}</span>
             </h1>
-            <p class="mt-3 text-base text-white sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+            <p class="mt-3 text-lg text-white sm:mt-5 sm:text-xl lg:text-xl xl:text-xl">
               {hero.description}
             </p>
-            <div class="mt-10 sm:mt-12">
-              <form on:submit|preventDefault class="sm:max-w-xl sm:mx-auto lg:mx-0">
-                Uncomment this when ready
-                <div class="sm:flex">
-                  <div class="min-w-0 flex-1">
-                    <label for="email" class="sr-only">Email address</label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email"
-                      class="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
-                      bind:value={fromMail}
-                    />
+            <div class="mt-10 relative h-32">
+              {#if !mailSent}
+                <form on:submit|preventDefault transition:fade={{ duration: 300 }} class="sm:max-w-xl sm:mx-auto lg:mx-0 absolute w-full">
+                  <div class="sm:flex">
+                    <div class="min-w-0 flex-1">
+                      <label for="email" class="sr-only">Email address</label>
+                      <input
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email"
+                        class="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
+                        bind:value={toMail}
+                      />
+                    </div>
+                    <div class="mt-3 sm:mt-0 sm:ml-3">
+                      <button
+                        type="button"
+                        class="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
+                        on:click={sendMail}>Notify me</button
+                      >
+                    </div>
                   </div>
-                  <div class="mt-3 sm:mt-0 sm:ml-3">
-                    <button
-                      type="button"
-                      class="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
-                      on:click={() => sendMail(fromMail)}>Start free trial</button
-                    >
-                  </div>
-                </div>
-                <p class="mt-3 text-sm text-white sm:mt-4">
-                  Start your free 14-day trial, no credit card necessary. By providing your email, you agree to our
-                  <a href="/" class="font-medium text-white"> terms of service </a>.
-                </p>
-              </form>
 
-              <a
-                class="relative inline-flex items-center px-6 py-4 border border-transparent text-lg font-medium rounded-full text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                href="mailto:hello@homeroomone.com"
-                target="_blank"
-              >
-                <!-- Heroicon name: outline/mail-open -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
-                  />
-                </svg>
-                <span>Contact</span>
-              </a>
+                  {#if emailError}
+                    <p class="mt-1 text-base sm:mt-1 text-red-600" transition:fade={{ duration: 300 }}>Incorrect email format</p>
+                  {/if}
+
+                  <p class="mt-3 text-sm text-white sm:mt-4">
+                    We care about the protection of your data. Read our
+                    <button on:click={toggleModal} class="underline">Privacy Policy.</button>
+                  </p>
+                </form>
+              {:else}
+                <div class="sm:max-w-xl sm:mx-auto lg:mx-0 absolute w-full" transition:fade={{ delay: 300, duration: 300 }}>
+                  <h4 class="text-base tracking-tight text-white sm:text-lg">
+                    <span class="text-midnight-900 font-bold block">Email sent!</span>
+                    <span class="block">
+                      As we build the next generation of student + counselor interaction, 
+                      we will keep you updated on our progress!
+                    </span>
+                  </h4>
+                </div>
+              {/if}
             </div>
           </div>
         </div>
         <div class="mt-12 lg:m-0 lg:relative">
           <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
-            <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
-            <!-- <img
-              class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none icon-info-card"
-              src="https://tailwindui.com/img/component-images/cloud-illustration-indigo-400.svg"
-              alt=""
-            /> -->
             <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none icon-info-card" src={hero.graphic?.url} alt="" />
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <PrivacyModal bind:show={showModal} />
 </template>
 
 <style lang="less">

@@ -7,7 +7,7 @@
 <template>
   <div class="relative">
     <div class="polygon"></div>
-    <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24 z-10 relative">
+    <div class="feature-section-wrapper lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24 z-10 relative">
       <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
         <div>
           <div>
@@ -42,11 +42,6 @@
       </div>
       <div class="mt-12 sm:mt-16 lg:mt-0">
         <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-          <!-- <img
-            class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-            src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg"
-            alt="Inbox user interface"
-          /> -->
           <img
             class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
             src={info.graphic.url}
@@ -76,5 +71,9 @@
     height: 100%;
     opacity: 0.4;
     margin-right: 20px;
+  }
+
+  .feature-section-wrapper {
+    min-height: 460px;
   }
 </style>

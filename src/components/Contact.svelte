@@ -1,7 +1,59 @@
 <script lang="ts">
+  // Svelte
+  import { fade } from 'svelte/transition'
+  // Packages
+  import * as EmailValidator from 'email-validator'
+  // Models
   import type { ContactBanner } from '../models'
+  // Components
+  import PrivacyModal from './PrivacyModal.svelte'
 
   export let contact: ContactBanner
+
+  let show: boolean = false
+
+  let showModal: boolean = show
+
+  let toMail: string = ''
+  let mailSent: boolean = false
+  let emailError: boolean = false
+
+  const sendMail = async () => {
+    console.log('Contact > sendMail > toMail: ', toMail)
+    if (!EmailValidator.validate(toMail)) {
+      emailError = !emailError
+      return
+    }
+
+    let opts = {
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    }
+
+    const email = {
+      to: toMail
+    }
+
+    opts.body = JSON.stringify(email)
+
+    const response = await fetch('/api/consulting/mail/send', opts)
+    const blob = await response.json()
+
+    if (blob.status === 200) {
+      mailSent = !mailSent
+      toMail = 'Success!'
+    } else {
+      mailSent = false
+      emailError = !emailError
+    }
+  }
+
+  const toggleModal = () => {
+    showModal = true
+  }
 </script>
 
 <template>
@@ -14,56 +66,55 @@
         <p class="mt-3 max-w-3xl text-lg text-white">
           {contact.description}
         </p>
-
-        <div class="flex-shrink-0 mt-10">
-          <a
-            class="relative inline-flex items-center px-6 py-4 border border-transparent text-lg font-medium rounded-full text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            href="mailto:hello@homeroomone.com"
-            target="_blank"
-          >
-            <!-- Heroicon name: outline/mail-open -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"
-              />
-            </svg>
-            <span>Contact</span>
-          </a>
-        </div>
-        <!-- <p class="mt-3 text-sm text-white">
-          We care about the protection of your data. Read our
-          <a href="#" class="font-medium underline"> Privacy Policy. </a>
-        </p> -->
       </div>
-      <!-- <div class="mt-8 lg:mt-0 lg:ml-8">
-        <form class="sm:flex">
-          <label for="email-address" class="sr-only">Email address</label>
-          <input
-            id="email-address"
-            name="email-address"
-            type="email"
-            autocomplete="email"
-            required
-            class="w-full px-5 py-3 border border-gray-300 shadow-sm placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs rounded-md"
-            placeholder="Enter your email"
-          />
-          <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-            <button
-              type="submit"
-              class="w-full flex items-center justify-center py-3 px-5 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >Notify me</button
-            >
+      <div class="mt-8 lg:mt-0 lg:ml-8 lg:w-2/5">
+        {#if !mailSent}
+          <form on:submit|preventDefault transition:fade={{ duration: 300 }} class="sm:flex">
+            <label for="email-address" class="sr-only">Email address</label>
+            <input
+              id="email-address"
+              name="email-address"
+              type="email"
+              autocomplete="email"
+              required
+              class="w-full px-5 py-3 border border-gray-300 shadow-sm placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 rounded-md text-midnight-900"
+              placeholder="Enter your email"
+              bind:value={toMail}
+            />
+            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+              <button
+                type="button"
+                class="w-full flex items-center justify-center py-3 px-5 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                on:click={sendMail}
+              >
+                Learn more
+              </button>
+            </div>
+          </form>
+
+          {#if emailError}
+            <p class="mt-1 text-base sm:mt-1 text-red-600" transition:fade={{ duration: 300 }}>Incorrect email format</p>
+          {/if}
+
+          <p class="mt-3 text-sm text-white">
+            We care about the protection of your data. Read our
+            <button on:click={toggleModal} class="underline">Privacy Policy.</button>
+          </p>
+        {:else}
+          <div transition:fade={{ delay: 300, duration: 300 }}>
+            <h4 class="text-base tracking-tight text-white sm:text-lg w-full">
+              <span class="font-bold block">Email sent!</span>
+              <span class="text-white block">
+                As we build the next generation of student + counselor interaction, we will keep you updated on our progress!
+              </span>
+            </h4>
           </div>
-        </form>
-        <p class="mt-3 text-sm text-white">
-          We care about the protection of your data. Read our
-          <a href="#" class="font-medium underline"> Privacy Policy. </a>
-        </p>
-      </div> -->
+        {/if}
+      </div>
     </div>
   </div>
+
+  <PrivacyModal bind:show={showModal} />
 </template>
 
 <style lang="less">
