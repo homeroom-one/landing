@@ -18,6 +18,7 @@ export async function POST({ request }: RequestEvent) {
   const payload: MailDataRequired = {
     to: response.to,
     from: `hello@homeroomone.com`,
+    bcc: `adam@homeroomone.com`,
     templateId: 'd-1ea692f963d5494db793a711161a82a5',
   }
 
