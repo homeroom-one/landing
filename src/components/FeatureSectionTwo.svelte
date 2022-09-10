@@ -7,7 +7,7 @@
 <template>
   <div class="relative mt-24">
     <div class="polygon"></div>
-    <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24 z-10 relative">
+    <div class="feature-section-wrapper lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24 z-10 relative">
       <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
         <div>
           <div>
@@ -37,14 +37,6 @@
             <p class="mt-4 text-lg text-gray-500">
               {report.description}
             </p>
-            <div class="mt-6">
-              <a
-                href="#"
-                class="inline-flex px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-              >
-                Get started
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -79,9 +71,14 @@
     position: absolute;
     z-index: 0;
     width: 100%;
-    min-height: 700px;
+    // min-height: 700px;
+    // min-height: 600px;
     height: 100%;
     opacity: 0.4;
     margin-right: 20px;
+  }
+
+  .feature-section-wrapper {
+    min-height: 460px;
   }
 </style>
