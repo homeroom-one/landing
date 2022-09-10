@@ -17,11 +17,13 @@
   let toMail: string = ''
   let mailSent: boolean = false
   let emailError: boolean = false
+  let errorMessage: string = ''
 
   const sendMail = async () => {
     console.log('Contact > sendMail > toMail: ', toMail)
     if (!EmailValidator.validate(toMail)) {
       emailError = !emailError
+      errorMessage = 'Incorrect email format'
       return
     }
 
@@ -48,6 +50,7 @@
     } else {
       mailSent = false
       emailError = !emailError
+      errorMessage = 'There was a problem sending the email'
     }
   }
 
@@ -93,7 +96,7 @@
           </form>
 
           {#if emailError}
-            <p class="mt-1 text-base sm:mt-1 text-red-600" transition:fade={{ duration: 300 }}>Incorrect email format</p>
+            <p class="mt-1 text-base sm:mt-1 text-red-600" transition:fade={{ duration: 300 }}>{errorMessage}</p>
           {/if}
 
           <p class="mt-3 text-sm text-white">
